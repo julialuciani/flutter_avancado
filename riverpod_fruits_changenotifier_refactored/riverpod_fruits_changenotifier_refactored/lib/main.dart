@@ -16,7 +16,7 @@ void main() {
   );
 }
 
-final fruitProvider = StateProvider<String>((ref) => 'unknown');
+final favoritesProvider = ChangeNotifierProvider((ref) => Favorites());
 
 class HomePage extends HookConsumerWidget {
 
@@ -24,11 +24,11 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final fruit = ref.watch(fruitProvider.state);
+    final favorites = ref.watch(favoritesProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Minha fruta favorita é ${fruit.state}'),
+        title: Text('Minha fruta favorita é ${favorites.fruit}'),
       ),
       body: Center(
         child: Column(
@@ -54,9 +54,19 @@ class FruitButton extends HookConsumerWidget{
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(onPressed: (){
-      ref.watch(fruitProvider.notifier).state = fruit;
+      ref.watch(favoritesProvider).changeFruit(fruit);
     },
     child: Text(fruit),
     );
   }
 }
+
+class Favorites extends ChangeNotifier{
+  String fruit = 'unknown';
+
+  changeFruit(String newFruit){
+    fruit = newFruit;
+    notifyListeners();
+  }
+}
+

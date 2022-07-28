@@ -6,17 +6,18 @@ void main() {
     ProviderScope(
       child: MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.pink,
         ),
-        home: const HomePage(title: 'Contador Com Riverpod'),
+        home: const HomePage(title: 'Fruits State'),
       ),
     ),
   );
 }
 
 final countProvider = StateProvider<int>((ref) => 0);
-final nameUserProvider = Provider<String>((ref) => 'Guilherme Quirino Maia');
+final nameUserProvider = Provider<String>((ref) => 'Júlia');
 
 class HomePage extends HookConsumerWidget {
   final String title;
@@ -34,23 +35,27 @@ class HomePage extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              ref.watch(nameUserProvider),
-            ),
+            // Text(
+            //   ref.watch(nameUserProvider),
+            // ),
             Text(
               counter.state.toString(),
-              style: Theme.of(context).textTheme.headline4,
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              counter.state++;
+            },
+            child: const Icon(Icons.add),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counter.state++;
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+    
+      
     );
   }
 }

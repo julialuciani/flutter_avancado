@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:navigation_with_namedroutes/page_three.dart';
 import 'page_two.dart';
 
 void main() {
@@ -10,15 +13,16 @@ void main() {
     debugShowCheckedModeBanner: false,
     initialRoute: '/',
     routes: {
-      '/': (context) => const MyHomePage(),
-      '/page-two': (context) => const PageTwo(
-            title: 'Página dois',
-          ),
-    },
+      MyHomePage.route : (context) => const MyHomePage(),
+      PageTwo.route : (context) => const PageTwo(),
+      PageThree.route : (context) => const PageThree(),
+          },
   ));
 }
 
 class MyHomePage extends StatelessWidget {
+
+  static const route  = '/';
   const MyHomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,7 @@ class MyHomePage extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).pushNamed(
-                '/page-two',
+             PageTwo.route,
                 arguments: {
                   'name' : 'Júlia',
                   'idade' : 17,

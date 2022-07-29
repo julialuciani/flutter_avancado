@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:navigation_with_namedroutes/page_three.dart';
 
 class PageTwo extends StatelessWidget {
-  final String title;
+
+  static const route = '/page-two';
+
 
   const PageTwo({
     Key? key,
-    required this.title,
+
   }) : super(key: key);
 
   @override
@@ -15,16 +18,18 @@ class PageTwo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-          height: 25,
+          height: 56,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             itemCount: dataPageInitial['lista'].length,
             itemBuilder: ((context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  dataPageInitial['lista'][index],
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    dataPageInitial['lista'][index],
+                  ),
                 ),
               );
             }),
@@ -38,6 +43,12 @@ class PageTwo extends StatelessWidget {
           children: [
             Text(dataPageInitial['name']),
             Text(dataPageInitial['idade'].toString()),
+            ElevatedButton(
+          onPressed: (){
+            Navigator.of(context).pushNamed( PageThree.route);
+          },
+          child: const Text('Go to page 3'),
+        ),
           ],
         ),
       ),

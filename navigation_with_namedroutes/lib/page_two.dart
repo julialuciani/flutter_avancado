@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navigation_with_namedroutes/page_three.dart';
 
 class PageTwo extends StatelessWidget {
 
@@ -45,7 +44,7 @@ class PageTwo extends StatelessWidget {
             Text(dataPageInitial['idade'].toString()),
             ElevatedButton(
           onPressed: (){
-            Navigator.of(context).pushNamed( PageThree.route);
+            Navigator.of(context).pushNamed( '/fhfhfh');
           },
           child: const Text('Go to page 3'),
         ),

@@ -16,15 +16,29 @@ class PageThree extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-       title: Text('Página 3'),
+       title: const Text('Página 3'),
         centerTitle: true,
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: (){
-            Navigator.of(context).pushNamed(PageTwo.route);
+            Navigator.of(context).pushNamed(PageTwo.route,
+            arguments: {
+                  'name': 'Júlia',
+                  'idade': 17,
+                  'lista': [
+                    'Meu',
+                    'nome',
+                    'é',
+                    'júlia',
+                    'Meu',
+                    'nome',
+                    'é',
+                    'júlia'
+                  ]
+                },);
           },
-          child: const Text('Go to page 3'),
+          child: const Text('Go to page 2'),
         ),
       ),
     );

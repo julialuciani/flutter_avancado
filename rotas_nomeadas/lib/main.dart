@@ -20,7 +20,7 @@ class MyHomePage  extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
         centerTitle: true,
       ),
       body: Center(
@@ -29,7 +29,7 @@ class MyHomePage  extends StatelessWidget {
           child: ElevatedButton(
             onPressed: (){
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => PageTwo()),
+                MaterialPageRoute(builder: (context) => const PageTwo()),
               );
             },
             child: const Text('Página 2'),

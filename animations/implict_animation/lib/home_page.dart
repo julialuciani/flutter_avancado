@@ -8,6 +8,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isClicked = false;
+  
+  void changeClicked() {
+    isClicked = !isClicked;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +22,24 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home Page'),
         centerTitle: true,
       ),
-      body: Container(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: isClicked? 400 : 75,
+              width: isClicked? 400 : 75,
+              color: Colors.pink,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                changeClicked();
+              },
+              child: const Text('Change Size'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

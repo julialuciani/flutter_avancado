@@ -10,6 +10,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  FocusNode focusNome = FocusNode();
+  FocusNode focusCpf = FocusNode();
+  
   bool isClicked = false;
   bool parar = false;
   double randomNumber = Random().nextDouble() * 300;
@@ -21,15 +24,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  stop(){
+  stop() {
     parar = !parar;
-    setState(() {
-    });
+    setState(() {});
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +42,48 @@ class _HomePageState extends State<HomePage> {
           children: [
             const Spacer(),
             AnimatedRotation(
-              duration: const Duration(seconds: 1),
+              duration: const Duration(microseconds: 1),
               turns: isClicked ? 100 : 0,
-              child: AnimatedOpacity(
-                opacity: isClicked? 1 : 0.3,
-                duration: const Duration(microseconds: 10),
-                child: AnimatedContainer(
-                  onEnd: () {
-                    parar ? stop() : changeClicked();
-                  },
-                  height: isClicked ? randomNumber : 200,
-                  width: isClicked ? randomNumber : 100,
-                  decoration: BoxDecoration(
-                    borderRadius: isClicked
-                        ? BorderRadius.circular(randomNumber)
-                        : BorderRadius.circular(25),
-                    color: isClicked ? Colors.purple : Colors.pink,
-                  ),
-                  // curve: Curves.bounceIn,
-                  curve: Curves.ease,
-                  duration: const Duration(seconds: 1),
-                  clipBehavior: isClicked ? Clip.antiAliasWithSaveLayer : Clip.none,
+              child: AnimatedContainer(
+                onEnd: () {
+                  parar ? stop() : changeClicked();
+                },
+                height: isClicked ? randomNumber : 200,
+                width: isClicked ? randomNumber : 100,
+                decoration: BoxDecoration(
+                  borderRadius: isClicked
+                      ? BorderRadius.circular(randomNumber)
+                      : BorderRadius.circular(25),
+                  color: isClicked ? Colors.pink : Colors.purple,
                 ),
+                // curve: Curves.bounceIn,
+                curve: Curves.ease,
+                duration: const Duration(seconds: 1),
+                clipBehavior:
+                    isClicked ? Clip.antiAliasWithSaveLayer : Clip.none,
+              ),
+            ),
+            const Spacer(),
+            AnimatedRotation(
+              duration: const Duration(microseconds: 1),
+              turns: isClicked ? 100 : 0,
+              child: AnimatedContainer(
+                onEnd: () {
+                  parar ? stop() : changeClicked();
+                },
+                height: isClicked ? randomNumber : 200,
+                width: isClicked ? randomNumber : 100,
+                decoration: BoxDecoration(
+                  borderRadius: isClicked
+                      ? BorderRadius.circular(randomNumber)
+                      : BorderRadius.circular(25),
+                  color: isClicked ? Colors.purple : Colors.pink,
+                ),
+                // curve: Curves.bounceIn,
+                curve: Curves.ease,
+                duration: const Duration(seconds: 1),
+                clipBehavior:
+                    isClicked ? Clip.antiAliasWithSaveLayer : Clip.none,
               ),
             ),
             const Spacer(),
@@ -76,11 +94,15 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Fazer algo'),
             ),
             const Spacer(),
-            ElevatedButton(
-                onPressed: () {
-                  stop();
-                },
-                child: const Text('Parar')),
+            AnimatedRotation(
+              turns: 100.00,
+              duration: const Duration(seconds: 1),
+              child: ElevatedButton(
+                  onPressed: () {
+                    stop();
+                  },
+                  child: const Text('Parar')),
+            ),
           ],
         ),
       ),

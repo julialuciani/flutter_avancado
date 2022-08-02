@@ -15,24 +15,31 @@ class HeroDestinyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).canvasColor,
-      alignment: FractionalOffset.center,
-      child: SizedBox(
-        height: kMaxRadius * 2,
-        width: kMaxRadius * 2,
-        child: Hero(
-          tag: imageName,
-          createRectTween: createRectTween,
-          child: RadialExpansion(
-            maxRadius: kMaxRadius,
-            child: Material(
-              color: Colors.pink.shade100,
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Image.asset(imageName),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(description),
+        centerTitle: true,
+        backgroundColor: Colors.pink,
+      ),
+      body: Container(
+        color: Theme.of(context).canvasColor,
+        alignment: FractionalOffset.center,
+        child: SizedBox(
+          height: kMaxRadius * 2,
+          width: kMaxRadius * 2,
+          child: Hero(
+            tag: imageName,
+            createRectTween: createRectTween,
+            child: RadialExpansion(
+              maxRadius: kMaxRadius,
+              child: Material(
+                color: Colors.pink.shade100,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Image.asset(imageName),
+                ),
               ),
             ),
           ),

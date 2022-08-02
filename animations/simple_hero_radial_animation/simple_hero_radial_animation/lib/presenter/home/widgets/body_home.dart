@@ -10,20 +10,34 @@ class BodyHome extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(32),
       alignment: FractionalOffset.bottomLeft,
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          CircleHeroFooter(
-            imageName: 'images/beachball-alpha.png',
-            description: 'Beachball',
+        children: [
+          const SizedBox(),
+          const Text(
+            'Selecione uma imagem',
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
-          CircleHeroFooter(
-            imageName: 'images/binoculars-alpha.png',
-            description: 'Binoculars',
-          ),
-          CircleHeroFooter(
-            imageName: 'images/chair-alpha.png',
-            description: 'Chair',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              CircleHeroFooter(
+                imageName: 'images/beachball-alpha.png',
+                description: 'Beachball',
+              ),
+              CircleHeroFooter(
+                imageName: 'images/binoculars-alpha.png',
+                description: 'Binoculars',
+              ),
+              CircleHeroFooter(
+                imageName: 'images/chair-alpha.png',
+                description: 'Chair',
+              ),
+            ],
           ),
         ],
       ),

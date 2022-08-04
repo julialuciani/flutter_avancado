@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_list_api/presenter/home_page.dart';
 
-
+import 'core/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      
+      initialRoute: HomePage.route,
+      routes: appRoutes,
+      onUnknownRoute: onUnknownRoute,
     );
   }
 }

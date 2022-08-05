@@ -31,7 +31,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           future: sucess,
           builder: (context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.hasData == true) {
-              return const Text('Seu post dos feedbacks deus certo');
+              return const Text('Seu post dos feedbacks deu certo');
             }
             return const CircularProgressIndicator();
           },

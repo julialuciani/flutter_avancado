@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:simple_list_api/presenter/animes_page.dart';
 import 'package:simple_list_api/presenter/home_page.dart';

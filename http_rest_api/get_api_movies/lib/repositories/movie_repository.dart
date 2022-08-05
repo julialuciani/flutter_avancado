@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:get_api_movies/movie_model.dart';
+import 'package:get_api_movies/models/movie_model.dart';
 
 class MovieRepository {
   final Dio dio;

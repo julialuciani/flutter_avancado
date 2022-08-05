@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get_api_movies/movie_repository.dart';
+import 'package:get_api_movies/repositories/movie_repository.dart';
 
-import 'movie_model.dart';
+import '../models/movie_model.dart';
 
 class MoviesPage extends StatefulWidget {
+  static const route = '/movies-page';
   const MoviesPage({Key? key}) : super(key: key);
 
   @override

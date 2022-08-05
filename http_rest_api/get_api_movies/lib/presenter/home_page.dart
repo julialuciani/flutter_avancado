@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get_api_movies/movie_repository.dart';
-import 'package:get_api_movies/movies_page.dart';
-import 'package:get_api_movies/single_movie_page.dart';
+import 'package:get_api_movies/presenter/movies_page.dart';
+import 'package:get_api_movies/presenter/single_movie_page.dart';
+import 'package:get_api_movies/repositories/movie_repository.dart';
 
-import 'movie_model.dart';
+import '../models/movie_model.dart';
 
 class HomePage extends StatefulWidget {
+   static const route = '/';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+ 
   MovieRepository repository = MovieRepository(Dio());
   late Future<List<MovieModel>> movies;
 
@@ -29,8 +31,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const MoviesPage()));
+            Navigator.of(context).pushNamed(MoviesPage.route);
           },
           icon: const Icon(
             Icons.heart_broken,

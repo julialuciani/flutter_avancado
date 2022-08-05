@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get_api_movies/home_page.dart';
+import 'package:get_api_movies/core/app_routes.dart';
+import 'package:get_api_movies/presenter/home_page.dart';
 
 
 void main() {
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      initialRoute: HomePage.route,
+      routes: appRoutes,
+      onUnknownRoute: onUnknownRoute,
     );
   }
 }

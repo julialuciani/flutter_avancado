@@ -15,7 +15,14 @@ class NotesNotifier extends StateNotifier<List<NoteModel>> {
     state = state.where((noteOfList) => noteOfList != note).toList();
   }
 
-  void isConcluded(NoteModel note){
+  void changeNoteState(NoteModel note){
+    NoteModel newNote = NoteModel(
+      title: note.title,
+      description: note.description,
+      isConcluded: !note.isConcluded);
+    state = state.where((noteOfList) => noteOfList != note).toList();
+
+    state = [newNote, ...state];
   
   }
 }

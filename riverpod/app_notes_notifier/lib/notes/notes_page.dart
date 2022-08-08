@@ -1,15 +1,9 @@
 import 'package:app_notes_notifier/notes/note_model.dart';
-import 'package:app_notes_notifier/notes/notes_notifier.dart';
+import 'package:app_notes_notifier/notes/notes_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final notesProvider = StateNotifierProvider<NotesNotifier, List<NoteModel>>(
-  (ref) => NotesNotifier(),
-);
-final concludedProvider = StateProvider(
-  (ref) => false,
-);
 
 class NotesPage extends HookConsumerWidget {
   final noteController = TextEditingController();
@@ -19,7 +13,7 @@ class NotesPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notes = ref.watch(notesProvider);
-    bool isConcluded = ref.watch(concludedProvider);
+
 
     return Scaffold(
       appBar: AppBar(
@@ -67,24 +61,25 @@ class NotesPage extends HookConsumerWidget {
                   return InkWell(
                     onTap: () {
                       ref
-                          .read(concludedProvider.state)
-                          .update((state) => !isConcluded);
+                          .read(notesProvider.notifier)
+                          .changeNoteState(notes[index]);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 4, bottom: 3),
                       child: ListTile(
-                        leading: isConcluded
+                        leading: notes[index].isConcluded
                             ? const Icon(
                                 CupertinoIcons.checkmark_alt_circle_fill,
                                 size: 28,
                                 color: Colors.indigo,
                               )
                             : const Icon(
-                                CupertinoIcons.xmark_circle_fill,
+                                CupertinoIcons.xmark_circle,
                                 size: 28,
                                 color: Colors.indigo,
                               ),
                         title: Text(notes[index].title),
+                        visualDensity: VisualDensity.adaptivePlatformDensity,
                         trailing: IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {

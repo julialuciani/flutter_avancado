@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_avancado/pointers_practice_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Gesture Recognition',
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const HomePage(),
+      home: const PointersPracticePage(),
     );
   }
 }
@@ -32,7 +33,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pointers'),
+        title: const Text(
+          'Pointers',
+          style: TextStyle(letterSpacing: 3),
+        ),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -48,7 +53,9 @@ class _HomePageState extends State<HomePage> {
               onPointerUp: (event) => print('Up $event'),
               onPointerMove: (event) => print('Move $event'),
             ),
-            const SizedBox(height: 40,),
+            const SizedBox(
+              height: 40,
+            ),
             GestureDetector(
               onDoubleTap: () {
                 print('Fui clicado 2 vezes');

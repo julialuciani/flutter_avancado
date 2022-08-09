@@ -25,19 +25,18 @@ class _RegisterPageState extends State<RegisterPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Form(
-          key: keyForm,
-          autovalidateMode: AutovalidateMode.always,
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.97,
-                color: Colors.blue.shade50,
-                child: TextFormField(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: keyForm,
+            autovalidateMode: AutovalidateMode.always,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                TextFormField(
                   autofocus: true,
                   decoration: const InputDecoration(
-                    // border: InputBorder.none,
+                    labelText: 'Name',
                     hintText: 'Name',
                     border: OutlineInputBorder(),
                     
@@ -46,79 +45,83 @@ class _RegisterPageState extends State<RegisterPage> {
                     focusEmail.requestFocus();
                   },
                 ),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                focusNode: focusEmail,
-                decoration: const InputDecoration(
-                  hintText: 'E-mail',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 20),
+                TextFormField(
+                  focusNode: focusEmail,
+                  decoration: const InputDecoration(
+                    labelText: 'E-mail',
+                    hintText: 'E-mail',
+                    border: OutlineInputBorder(),
+                  ),
+                  autovalidateMode: AutovalidateMode.always,
+                  validator: (value) {
+                    if (value!.length < 6) {
+                      return 'O email precisa ter mais do que 5 caracteres';
+                    }
+                    return null;
+                  },
+                  onFieldSubmitted: (value) {
+                    focusCpf.requestFocus();
+                  },
                 ),
-                autovalidateMode: AutovalidateMode.always,
-                validator: (value) {
-                  if (value!.length < 6) {
-                    return 'O email precisa ter mais do que 5 caracteres';
-                  }
-                  return null;
-                },
-                onFieldSubmitted: (value) {
-                  focusCpf.requestFocus();
-                },
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                focusNode: focusCpf,
-                decoration: const InputDecoration(
-                  hintText: 'CPF',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 20),
+                TextFormField(
+                  focusNode: focusCpf,
+                  decoration: const InputDecoration(
+                    labelText: 'CPF',
+                    hintText: 'CPF',
+                    border: OutlineInputBorder(),
+                  ),
+                  onFieldSubmitted: (value) {
+                    focusBirthDate.requestFocus();
+                  },
                 ),
-                onFieldSubmitted: (value) {
-                  focusBirthDate.requestFocus();
-                },
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                focusNode: focusBirthDate,
-                decoration: const InputDecoration(
-                  hintText: 'BirthDate',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 20),
+                TextFormField(
+                  focusNode: focusBirthDate,
+                  decoration: const InputDecoration(
+                    labelText: 'BirthDate',
+                    hintText: 'BirthDate',
+                    border: OutlineInputBorder(),
+                  ),
+                  onFieldSubmitted: (value) {
+                    focusAge.requestFocus();
+                  },
                 ),
-                onFieldSubmitted: (value) {
-                  focusAge.requestFocus();
-                },
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                focusNode: focusAge,
-                decoration: const InputDecoration(
-                  hintText: 'Age',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 20),
+                TextFormField(
+                  focusNode: focusAge,
+                  decoration: const InputDecoration(
+                    labelText: 'Age',
+                    hintText: 'Age',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (keyForm.currentState!.validate()) {
-                    print('Tá validado');
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Colors.white,
-                        dismissDirection: DismissDirection.startToEnd,
-                        content: Text(
-                          'Você precisa preencher os dados corretamente',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (keyForm.currentState!.validate()) {
+                      print('Tá validado');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Colors.white,
+                          dismissDirection: DismissDirection.startToEnd,
+                          content: Text(
+                            'Você precisa preencher os dados corretamente',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                },
-                child: const Text('Finalizar'),
-              ),
-            ],
+                      );
+                    }
+                  },
+                  child: const Text('Finalizar'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focus_node1/core/app_routes.dart';
+import 'package:focus_node1/practice_page.dart';
 
-import 'home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       debugShowCheckedModeBanner: false,
-     initialRoute: HomePage.route, //Essa vai ser a rota inicial
+     initialRoute: PracticePage.route, //Essa vai ser a rota inicial
     );
   }
 }

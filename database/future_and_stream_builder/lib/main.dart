@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:future_and_stream_builder/home_page_stream_counter.dart';
 
-import 'home_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const HomePageCounter(),
     );
   }
 }

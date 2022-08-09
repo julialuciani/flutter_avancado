@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'home_page_repository.dart';
@@ -12,6 +14,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _repository = HomeRepository();
   late Future<List<String>> names;
+  final streamController = StreamController();
+
 
   @override
   void initState() {

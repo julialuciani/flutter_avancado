@@ -15,7 +15,7 @@ class GetAllTrendingMoviesRemoteDatasourceImp implements IGetAllTrendingMoviesDa
 
     try {
       final response = await _dio.get(
-        'https://api.themoviedb.org/3/trending/$timeWindow',
+        'https://api.themoviedb.org/3/trending/movie/$timeWindow',
         queryParameters: {
           'api_key': 'f62bcc0493d7210741ed4fea17985839',
         },

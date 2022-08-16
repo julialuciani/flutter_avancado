@@ -1,0 +1,1 @@
+export 'package:micro_app_products/micro_app_products_resolver.dart';

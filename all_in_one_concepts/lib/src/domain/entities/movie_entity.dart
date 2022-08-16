@@ -4,7 +4,7 @@ class MovieEntity {
   final bool adult;
   final String backdropPath;
   final int id;
-  final String name;
+  final String title;
   final String originalLanguage;
   final String originalName;
   final String overview;
@@ -20,7 +20,7 @@ class MovieEntity {
     required this.adult,
     required this.backdropPath,
     required this.id,
-    required this.name,
+    required this.title,
     required this.originalLanguage,
     required this.originalName,
     required this.overview,

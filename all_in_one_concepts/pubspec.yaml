@@ -37,6 +37,11 @@ dependencies:
   get_it: ^7.2.0
   hooks_riverpod: ^1.0.4
   dio: ^4.0.6
+  intl: ^0.17.0
+  flutter_localizations:
+    sdk: flutter
+  auto_size_text: ^3.0.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

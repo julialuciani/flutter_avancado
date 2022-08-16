@@ -7,7 +7,7 @@ class MovieDto extends MovieEntity {
     required bool adult,
     required String backdropPath,
     required int id,
-    required String name,
+    required String title,
     required String originalLanguage,
     required String originalName,
     required String overview,
@@ -23,7 +23,7 @@ class MovieDto extends MovieEntity {
             adult: adult,
             backdropPath: backdropPath,
             id: id,
-            name: name,
+            title: title,
             originalLanguage: originalLanguage,
             originalName: originalName,
             overview: overview,
@@ -42,7 +42,7 @@ class MovieDto extends MovieEntity {
     result.addAll({'adult': adult});
     result.addAll({'backdrop_path': backdropPath});
     result.addAll({'id': id});
-    result.addAll({'name': name});
+    result.addAll({'title': title});
     result.addAll({'original_language': originalLanguage});
     result.addAll({'original_name': originalName});
     result.addAll({'overview': overview});
@@ -63,7 +63,7 @@ class MovieDto extends MovieEntity {
       adult: map['adult'] ?? false,
       backdropPath: map['backdrop_path'] ?? '',
       id: map['id']?.toInt() ?? 0,
-      name: map['name'] ?? '',
+      title: map['title'] ?? '',
       originalLanguage: map['original_language'] ?? '',
       originalName: map['original_name'] ?? '',
       overview: map['overview'] ?? '',

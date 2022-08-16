@@ -1,22 +1,18 @@
+import 'package:all_in_one_concepts/src/presenter/ui/movies/widgets/drawer_movies.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/body_movies.dart';
 
 class MoviesPage extends StatelessWidget {
   const MoviesPage({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Image.asset('assets/video_tape.png',),
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'Movies',
-          style: TextStyle(letterSpacing: 3, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.pink.shade200,
-      ),
-      body: Container(),
+      drawer: const DrawerMovies(),
+      body: BodyMoviesPage(),
     );
   }
 }

@@ -3,11 +3,11 @@ class Person {
   int age = 17;
   bool work = true;
   int yearsToRetire = 50;
-  int retirement = 0;
+  int retirementTime = 0;
   bool isGoing = false;
 
   yearsToRetirement() {
-    retirement = yearsToRetire - age;
+    retirementTime = yearsToRetire - age;
   }
 
   isGoingToRetire() {

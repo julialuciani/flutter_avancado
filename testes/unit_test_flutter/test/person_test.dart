@@ -1,7 +1,7 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-import 'class_person.dart';
+import 'classes/class_person.dart';
 
 void main() {
   late Person person;
@@ -23,7 +23,7 @@ void main() {
   group('Testing if the methods of the class are working', () {
     test('If method years to retire is working (method yearsToRetirement)', () {
       person.yearsToRetirement();
-      expect(person.retirement, equals(33));
+      expect(person.retirementTime, equals(33));
     });
 
     test('If the person is going to retire someday(method isGoingToRetire)', () {

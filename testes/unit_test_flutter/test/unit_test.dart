@@ -2,7 +2,7 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-import 'change_counter.dart';
+import 'classes/change_counter.dart';
 
 void main() {
   late ChangeCounter changeCounter;

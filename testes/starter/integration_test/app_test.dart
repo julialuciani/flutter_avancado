@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ideast/main.dart';
 import 'package:ideast/screens/home_screen.dart';
@@ -22,6 +23,9 @@ void main() {
         find.byKey(const Key('emailLoginField')),
         'julia@julia',
       );
+      await tester.pump();
+      sleepSec(2);
+
       await tester.enterText(
         find.byKey(const Key('passwordLoginField')),
         'jujujuju',
@@ -52,6 +56,7 @@ void main() {
 
       await tester.tap(find.byKey(const Key('text_button_signup')));
 
+      sleepSec(1);
       await tester.pumpAndSettle();
 
       await tester.enterText(
@@ -60,23 +65,110 @@ void main() {
       );
       await tester.enterText(
         find.byKey(const Key('textfield_password_signup')),
-        'jujuju',
+        'jujujuju',
       );
 
       await tester.enterText(
         find.byKey(const Key('textfield_confirm_password')),
-        'jujuju',
+        'jujujuju',
       );
-
-      await tester.testTextInput.receiveAction(TextInputAction.done);
-      //It's closing the cellphone's keyboard
-
-      sleepSec(1);
-
-      await tester.tap(find.byKey(const Key('button_signup_signup')));
 
       await tester.pump();
       sleepSec(1);
+
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      //It's closing the cellphone's keyboard
+      await tester.pumpAndSettle();
+      sleepSec(2);
+
+      await tester.tap(find.byKey(const Key('button_signup_signup')));
+
+      await tester.pumpAndSettle();
+      sleepSec(1);
+    });
+  });
+
+  // Future login() async{
+  //     Future login ('Testing a new ideia', (WidgetTester tester) async {
+  //     await tester.pumpWidget(const MyApp());
+  //     await tester.pumpAndSettle();
+
+  //     await tester.enterText(
+  //       find.byKey(const Key('emailLoginField')),
+  //       'julia@julia',
+  //     );
+  //     // await tester.pump();
+  //     sleepSec(2);
+
+  //     await tester.enterText(
+  //       find.byKey(const Key('passwordLoginField')),
+  //       'jujujuju',
+  //     );
+
+  //     sleepSec(2);
+  //     await tester.testTextInput.receiveAction(TextInputAction.done);
+  //     sleepSec(1);
+
+  //     await tester.tap(find.byKey(const Key('text_button_login')));
+  //     await tester.pumpAndSettle();
+
+  // }); 
+  // }
+
+
+  group('Testing adding a new idea', () {
+    testWidgets('Testing a new ideia', (WidgetTester tester) async {
+      await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
+
+    // await login();
+    await tester.pumpAndSettle();
+      // await tester.enterText(
+      //   find.byKey(const Key('emailLoginField')),
+      //   'julia@julia',
+      // );
+      // // await tester.pump();
+      // sleepSec(2);
+
+      // await tester.enterText(
+      //   find.byKey(const Key('passwordLoginField')),
+      //   'jujujuju',
+      // );
+
+      // sleepSec(2);
+      // await tester.testTextInput.receiveAction(TextInputAction.done);
+      // sleepSec(1);
+
+      // await tester.tap(find.byKey(const Key('text_button_login')));
+      // await tester.pumpAndSettle();
+
+
+      sleepSec(2);
+      await tester.tap(find.byKey(const Key('addButton')));
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+        find.byKey(const Key('newIdeaField')),
+        'I have an idea',
+      );
+
+      sleepSec(1);
+      await tester.pump();
+
+      await tester.enterText(
+        find.byKey(const Key('inspirationField')),
+        'this is my idea :)',
+      );
+
+      sleepSec(2);
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pumpAndSettle();
+
+      await tester.pump();
+
+      await tester.tap(find.byKey(const Key('addIdeaButton')));
+      await tester.pumpAndSettle();
+      sleepSec(2);
     });
   });
 }

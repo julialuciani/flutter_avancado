@@ -11,6 +11,8 @@ class _HeartState extends State<Heart> {
   IconData icon = Icons.favorite_border;
   double size = 100;
   Color color = Colors.pink.shade300;
+ 
+
 
   changeIcon() {
     if (icon == Icons.favorite_border) {
@@ -33,7 +35,8 @@ class _HeartState extends State<Heart> {
       onTap: () {
         changeIcon();
       },
-      child: Icon(icon, size: size, color: color,),
+      key: const Key('ButtonHeart'),
+      child: Icon(icon, size: size, color: color, key: const Key('IconHeart'),),
     );
   }
 }

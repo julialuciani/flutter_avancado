@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 8,
                   color: Colors.grey.shade200,
                   child: Dismissible(
-                    key: UniqueKey(),
+                    key: Key(ideasList[index].title.toString()),
                     onDismissed: (direction) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

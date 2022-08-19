@@ -1,11 +1,12 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ideast/main.dart';
+import 'package:ideast/model/idea_model.dart';
 import 'package:ideast/screens/home_screen.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:provider/provider.dart';
 
 void sleepSec(int seconds) => sleep(Duration(seconds: seconds));
 
@@ -97,7 +98,7 @@ void main() {
     });
   });
 
-  group('Testing adding a new idea', () {
+  group('Testing adding and excluding a new idea', () {
     testWidgets('Testing a new ideia', (WidgetTester tester) async {
       await tester.pumpWidget(const MyApp());
       await tester.pumpAndSettle();
@@ -129,7 +130,32 @@ void main() {
 
       await tester.tap(find.byKey(const Key('addIdeaButton')));
       await tester.pumpAndSettle();
-      sleepSec(2);
+      sleepSec(1);
+
+      await excludeIdea(tester);
+      await tester.pumpAndSettle();
+      sleepSec(1);
     });
   });
+}
+
+Future excludeIdea(WidgetTester tester) async {
+  final state = tester.state(find.byType(Scaffold));
+
+  final title = Provider.of<IdeasModel>(
+    state.context,
+    listen: false,
+  ).getAllIdeas[0].title;
+
+  sleepSec(2);
+  
+  final tempTitle = title!;
+
+  await tester.drag(find.byKey(Key(title.toString())), const Offset(-600,0));
+
+  sleepSec(2);
+
+  await tester.pumpAndSettle();
+
+  expect(find.text(tempTitle), findsNothing);
 }

@@ -1,7 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:notes_app/app/presenter/ui/home_page.dart';
-
-import '../../../../shared/widgets/textfield_app.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = 'login-page';
@@ -52,7 +50,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               Form(
-                autovalidateMode: AutovalidateMode.always,
+                key: loginPageFormKey,
+                // autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: [
                     TextFieldApp(
@@ -61,6 +60,11 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: 'email',
                       controller: controllerEmail,
                       textfieldKey: 'emailLoginPage',
+                      validate: (value) {
+                        if (!value!.contains('@') || !value!.contains('.com')) {
+                          return 'email must be valid';
+                        }
+                      },
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
@@ -71,6 +75,11 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: 'password',
                       controller: controllerPassword,
                       textfieldKey: 'passwordLoginPage',
+                      validate: (value) {
+                        if (value!.length <= 6) {
+                          return 'password must be longer than 6 characters';
+                        }
+                      },
                     ),
                   ],
                 ),
@@ -90,8 +99,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(HomePage.route);
+                      if (loginPageFormKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Sucess!')),
+                        );
+                        Navigator.of(context).pushNamed('/home');
+                      }
                     },
+                    key: const Key('text_button_login'),
                     child: const Text('Submit'),
                   ),
                 ],

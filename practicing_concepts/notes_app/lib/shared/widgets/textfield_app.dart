@@ -1,25 +1,33 @@
+
 import 'package:flutter/material.dart';
 
 class TextFieldApp extends StatelessWidget {
-  final String hintLabel;
+  final String labelText;
   final String hintText;
   final TextEditingController controller;
   final String textfieldKey;
+  final FocusNode? nextFocus;
+  final FocusNode? nowFocus;
 
   const TextFieldApp({
     Key? key,
-    required this.hintLabel,
+    this.nowFocus,
+    this.nextFocus,
+    required this.labelText,
     required this.hintText,
     required this.controller,
     required this.textfieldKey,
+  
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: true,
+      focusNode: nowFocus,
       controller: controller,
       decoration: InputDecoration(
-        labelText: hintLabel,
+        labelText: labelText,
         hintText: hintText,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
@@ -31,6 +39,7 @@ class TextFieldApp extends StatelessWidget {
         // enabled: false,
       ),
       key: Key(textfieldKey),
+    onFieldSubmitted: (value) => nextFocus!.requestFocus(),
     );
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:notes_app/app/presenter/home_page.dart';
-import 'package:notes_app/core/app_routes.dart';
+import 'package:notes_app/app/core/app_routes.dart';
+import 'package:notes_app/app/presenter/ui/auth/login_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: HomePage.route,
+      initialRoute: LoginPage.route,
       routes: appRoutes,
       onUnknownRoute: onUnknownRoute,
     );

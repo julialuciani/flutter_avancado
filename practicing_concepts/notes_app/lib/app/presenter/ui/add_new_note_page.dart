@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:notes_app/app/presenter/note_model.dart';
 import 'package:notes_app/app/presenter/riverpod/notes_riverpod/notes_provider.dart';
+import 'package:notes_app/app/presenter/ui/note_model.dart';
 
-import '../../shared/widgets/textfield_app.dart';
+import '../../../shared/widgets/textfield_app.dart';
 
 class AddNewIdeaPage extends HookConsumerWidget {
   static const route = '/adding-idea';
   final controllerInspirateTitle = TextEditingController();
   final controllerInspirateDescription = TextEditingController();
+  final FocusNode focusDescription = FocusNode();
 
   final newIdeaFormKey = GlobalKey<FormState>();
 
@@ -47,17 +49,19 @@ class AddNewIdeaPage extends HookConsumerWidget {
                     child: Column(
                       children: [
                         TextFieldApp(
-                          hintLabel: 'idea',
-                          controller: controllerInspirateTitle,
+                          nextFocus: focusDescription,
                           hintText: 'Write...',
-                          textfieldKey: 'idea',
+                          labelText: 'note',
+                          controller: controllerInspirateTitle,
+                          textfieldKey: 'noteTitle',
                         ),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                         TextFieldApp(
-                          hintLabel: 'description',
-                          controller: controllerInspirateDescription,
+                          nowFocus: focusDescription,
                           hintText: 'Go on...',
-                          textfieldKey: 'description',
+                          labelText: 'description',
+                          controller: controllerInspirateDescription,
+                          textfieldKey: 'noteDescription',
                         ),
                       ],
                     ),
@@ -77,11 +81,32 @@ class AddNewIdeaPage extends HookConsumerWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8),
-                    child: ListTile(
-                      title: Text(notes[index].title),
-                      subtitle: Text(notes[index].description),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), 
-                      side: BorderSide(color: Colors.grey.shade400, width: 2) ),
+                    child: InkWell(
+                      onTap: () {
+                        ref.read(notesProvider.notifier).changeNoteState(notes[index]);
+                      },
+                      child: ListTile(
+                        leading: notes[index].isConcluded
+                            ? Icon(
+                                CupertinoIcons.checkmark_alt_circle_fill,
+                                size: 28,
+                                color: Colors.pink.shade200,
+                              )
+                            : Icon(
+                                CupertinoIcons.xmark_circle,
+                                size: 25,
+                                color: Colors.pink.shade200,
+                              ),
+                        title: Text(notes[index].title),
+                        subtitle: Text(notes[index].description),
+                        shape:
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.grey.shade400, width: 2)),
+                        trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              ref.read(notesProvider.notifier).removeNote(notes[index]);
+                            }),
+                      ),
                     ),
                   );
                 },
@@ -98,7 +123,6 @@ class AddNewIdeaPage extends HookConsumerWidget {
                   NoteModel(
                     title: controllerInspirateTitle.text,
                     description: controllerInspirateDescription.text,
-                    isConcluded: false,
                   ),
                 );
             controllerInspirateDescription.clear();

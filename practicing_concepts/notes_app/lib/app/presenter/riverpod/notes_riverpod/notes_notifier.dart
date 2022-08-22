@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../note_model.dart';
+import '../../ui/note_model.dart';
 
 class NotesNotifier extends StateNotifier<List<NoteModel>>{
   NotesNotifier() : super([]);
@@ -19,7 +19,7 @@ class NotesNotifier extends StateNotifier<List<NoteModel>>{
     NoteModel newNote = NoteModel(
       title: note.title,
       description: note.description,
-      isConcluded: note.isConcluded,
+      isConcluded: !note.isConcluded,
     );
     state = state.where((noteOfList) => noteOfList != note).toList();
 

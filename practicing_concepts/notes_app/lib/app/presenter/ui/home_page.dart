@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/app/presenter/add_new_note_page.dart';
+import 'package:notes_app/app/presenter/ui/add_new_note_page.dart';
 
 class HomePage extends StatelessWidget {
   static const route = '/';

@@ -1,12 +1,10 @@
 class NoteModel {
   String title;
   String description;
-  bool isConcluded = false;
+  bool isConcluded;
   NoteModel({
     required this.title,
     required this.description,
-    required this.isConcluded,
+    this.isConcluded = false,
   });
-  
-
 }

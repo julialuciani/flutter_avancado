@@ -31,6 +31,7 @@ class AddNotePage extends HookConsumerWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Padding(
@@ -73,7 +74,7 @@ class AddNotePage extends HookConsumerWidget {
               ),
             ),
             SizedBox(
-              height: double.maxFinite,
+              height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,

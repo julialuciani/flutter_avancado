@@ -107,7 +107,22 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     },
                     key: const Key('text_button_login'),
-                    child: const Text('Submit'),
+                    child: const Text('Login'),
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.pink.shade100),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/sign-up');
+                    },
+                    key: const Key('text_button_signup'),
+                    child: const Text('Sign up'),
                   ),
                 ],
               ),

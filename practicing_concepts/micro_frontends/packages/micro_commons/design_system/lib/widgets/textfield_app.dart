@@ -9,9 +9,11 @@ class TextFieldApp extends StatelessWidget {
   final FocusNode? nowFocus;
   final dynamic validate;
   final dynamic specificValidator;
+  final bool obscure;
 
   const TextFieldApp({
     Key? key,
+    this.obscure = false,
     this.specificValidator,
     this.validate,
     this.nowFocus,
@@ -29,6 +31,7 @@ class TextFieldApp extends StatelessWidget {
       focusNode: nowFocus,
       controller: controller,
       keyboardType: TextInputType.text,
+ 
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,

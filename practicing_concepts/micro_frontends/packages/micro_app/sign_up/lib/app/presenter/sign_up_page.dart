@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,7 @@ class SignUpPage extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Form(
+                key: signupPageFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -51,32 +53,35 @@ class SignUpPage extends StatelessWidget {
                       textfieldKey: 'name_field_signup',
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    TextFieldApp(
+                    TextFieldAppEmail(
                       labelText: "Email",
                       hintText: "Write your email",
                       controller: emailController,
                       textfieldKey: 'email_field_signup',
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    TextFieldApp(
+                    TextFieldAppFormatted(
                       labelText: "Phone",
                       hintText: "cellphone",
                       controller: cellphoneController,
                       textfieldKey: 'cellphone_field_signup',
+                      formater: TelefoneInputFormatter(),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    TextFieldApp(
+                    TextFieldAppFormatted(
                       labelText: "CPF",
                       hintText: "CPF",
                       controller: cpfController,
                       textfieldKey: 'cpf_field_signup',
+                      formater: CpfInputFormatter(),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    TextFieldApp(
+                    TextFieldAppFormatted(
                       labelText: "CEP",
                       hintText: "CEP",
                       controller: cepController,
                       textfieldKey: 'cep_field_signup',
+                      formater: CepInputFormatter(),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                     TextFieldApp(
@@ -120,10 +125,15 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/sign-up');
+                        if (signupPageFormKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Sucess!')),
+                          );
+                          Navigator.of(context).pushNamed('/home');
+                        }
                       },
-                      key: const Key('text_button_signup'),
-                      child: const Text('Sign up'),
+                      key: const Key('text_button_login'),
+                      child: const Text('Login'),
                     ),
                   ],
                 ),

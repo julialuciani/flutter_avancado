@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextFieldApp extends StatelessWidget {
+class TextFieldAppEmail extends StatelessWidget {
   final String labelText;
   final String hintText;
   final TextEditingController controller;
@@ -10,7 +10,7 @@ class TextFieldApp extends StatelessWidget {
   final dynamic validate;
   final dynamic specificValidator;
 
-  const TextFieldApp({
+  const TextFieldAppEmail({
     Key? key,
     this.specificValidator,
     this.validate,
@@ -28,11 +28,9 @@ class TextFieldApp extends StatelessWidget {
       autofocus: true,
       focusNode: nowFocus,
       controller: controller,
-      keyboardType: TextInputType.text,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
-
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
           borderSide: BorderSide(color: Colors.pink.shade100, width: 2),
@@ -45,10 +43,15 @@ class TextFieldApp extends StatelessWidget {
       key: Key(textfieldKey),
       onFieldSubmitted: (value) => nextFocus!.requestFocus(),
       validator: (value) {
-        if (value!.isEmpty) {
-          return "This field is mandatory";
+        if (!value!.contains("@") || !value.contains(".com")) {
+          return "The email must be valid";
+        } else{
+          if (value.isEmpty){
+            return "This field is mandatory";
+          }
         }
         return null;
+        
       },
     );
   }

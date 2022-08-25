@@ -61,7 +61,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                     TextFieldAppFormatted(
-                      labelText: "Phone",
+                      labelText: "Cellphone",
                       hintText: "cellphone",
                       controller: cellphoneController,
                       textfieldKey: 'cellphone_field_signup',
@@ -101,19 +101,23 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    TextFieldApp(
+                    TextFieldAppConfirmPassword(
                       labelText: "Password",
                       hintText: "Enter your password",
                       controller: passwordController,
                       textfieldKey: 'password_field_signup',
+                      icon: Icons.visibility, controllerConfirm: confirmPasswordController,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    TextFieldApp(
-                      labelText: "Confirm Password",
-                      hintText: "Please confirm you password",
-                      controller: confirmPasswordController,
-                      textfieldKey: 'confirm_password_field_signup',
+                    TextFieldAppConfirmPassword(
+                        labelText: "Confirm Password",
+                        hintText: "Please confirm you password",
+                        controller: confirmPasswordController,
+                        textfieldKey: 'confirm_password_field_signup',
+                        controllerConfirm: passwordController,
+                        icon: Icons.visibility,
                     ),
+                       
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                     ElevatedButton(
                       style: ButtonStyle(
